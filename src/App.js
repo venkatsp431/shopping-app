@@ -4,10 +4,12 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
 
+import { useState } from "react";
+import { Rating } from "react-simple-star-rating";
 function App() {
   const [cart, setCart] = useState(0);
+  const [value, setValue] = useState(2);
   const products = [
     {
       image: "https://m.media-amazon.com/images/I/61j99uUfXNL._SX679_.jpg",
@@ -80,6 +82,15 @@ function App() {
                 <Card.Img variant="top" src={prod.image} />
                 <Card.Body>
                   <Card.Title>{prod.model}</Card.Title>
+                  {/* <Typography component="legend">Controlled</Typography> */}
+                  <Rating
+                    name="simple-controlled"
+                    value={value}
+                    defaultValue={4}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                  />
                   <h5>₹ {prod.price}</h5>
 
                   <Button variant="primary" onClick={() => addCart()}>
